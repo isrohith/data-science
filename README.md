@@ -1,4 +1,3 @@
-Introduction
 This second programming assignment will require you to write an R function that is able to cache potentially time-consuming computations. For example, taking the mean of a numeric vector is typically a fast operation. However, for a very long vector, it may take too long to compute the mean, especially if it has to be computed repeatedly (e.g. in a loop). If the contents of a vector are not changing, it may make sense to cache the value of the mean so that when we need it again, it can be looked up in the cache rather than recomputed. In this Programming Assignment you will take advantage of the scoping rules of the R language and how they can be manipulated to preserve state inside of an R object.
 
 Example: Caching the Mean of a Vector
@@ -10,6 +9,7 @@ set the value of the vector
 get the value of the vector
 set the value of the mean
 get the value of the mean
+
 makeVector <- function(x = numeric()) {
         m <- NULL
         set <- function(y) {
@@ -23,8 +23,8 @@ makeVector <- function(x = numeric()) {
              setmean = setmean,
              getmean = getmean)
 }
-The following function calculates the mean of the special "vector" created with the above function. However, it first checks to see if the mean has already been calculated. If so, it gets the mean from the cache and skips the computation. Otherwise, it calculates the mean of the data and sets the value of the mean in the cache via the setmean function.
 
+The following function calculates the mean of the special "vector" created with the above function. However, it first checks to see if the mean has already been calculated. If so, it gets the mean from the cache and skips the computation. Otherwise, it calculates the mean of the data and sets the value of the mean in the cache via the setmean function
 cachemean <- function(x, ...) {
         m <- x$getmean()
         if(!is.null(m)) {
@@ -37,6 +37,7 @@ cachemean <- function(x, ...) {
         m
 }
 Assignment: Caching the Inverse of a Matrix
+
 Matrix inversion is usually a costly computation and there may be some benefit to caching the inverse of a matrix rather than computing it repeatedly (there are also alternatives to matrix inversion that we will not discuss here). Your assignment is to write a pair of functions that cache the inverse of a matrix.
 
 Write the following functions:
